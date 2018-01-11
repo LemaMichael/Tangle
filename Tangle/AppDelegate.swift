@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //: Do what the storyboard does for you
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = ViewController()
+        
+        //: Using a custom UITabBarController
+        window?.rootViewController = CustomTabBarController()
         return true
     }
 

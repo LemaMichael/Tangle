@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C3804C42007C5A8009B5025 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3804C32007C5A8009B5025 /* CustomTabBarController.swift */; };
+		4C3804C72007C873009B5025 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3804C62007C873009B5025 /* ColorExtension.swift */; };
 		4C9161552007272900E63A2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9161542007272900E63A2D /* AppDelegate.swift */; };
 		4C9161572007272900E63A2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9161562007272900E63A2D /* ViewController.swift */; };
 		4C91615C2007272900E63A2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C91615B2007272900E63A2D /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C3804C32007C5A8009B5025 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		4C3804C62007C873009B5025 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		4C9161512007272900E63A2D /* Tangle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tangle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9161542007272900E63A2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C9161562007272900E63A2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,8 +55,17 @@
 			isa = PBXGroup;
 			children = (
 				4C9161562007272900E63A2D /* ViewController.swift */,
+				4C3804C32007C5A8009B5025 /* CustomTabBarController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		4C3804C52007C85E009B5025 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4C3804C62007C873009B5025 /* ColorExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		4C9161482007272900E63A2D = {
@@ -74,6 +87,7 @@
 		4C9161532007272900E63A2D /* Tangle */ = {
 			isa = PBXGroup;
 			children = (
+				4C3804C52007C85E009B5025 /* Extensions */,
 				4C0B36A52007BAFC0071D038 /* Model */,
 				4C0B36A62007BB010071D038 /* View */,
 				4C0B36A72007BB070071D038 /* Controller */,
@@ -158,6 +172,8 @@
 			files = (
 				4C9161572007272900E63A2D /* ViewController.swift in Sources */,
 				4C9161552007272900E63A2D /* AppDelegate.swift in Sources */,
+				4C3804C42007C5A8009B5025 /* CustomTabBarController.swift in Sources */,
+				4C3804C72007C873009B5025 /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
