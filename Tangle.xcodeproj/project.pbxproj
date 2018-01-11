@@ -33,6 +33,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C0B36A52007BAFC0071D038 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4C0B36A62007BB010071D038 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4C0B36A72007BB070071D038 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4C9161562007272900E63A2D /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		4C9161482007272900E63A2D = {
 			isa = PBXGroup;
 			children = (
@@ -52,8 +74,10 @@
 		4C9161532007272900E63A2D /* Tangle */ = {
 			isa = PBXGroup;
 			children = (
+				4C0B36A52007BAFC0071D038 /* Model */,
+				4C0B36A62007BB010071D038 /* View */,
+				4C0B36A72007BB070071D038 /* Controller */,
 				4C9161542007272900E63A2D /* AppDelegate.swift */,
-				4C9161562007272900E63A2D /* ViewController.swift */,
 				4C91615B2007272900E63A2D /* Assets.xcassets */,
 				4C91615D2007272900E63A2D /* LaunchScreen.storyboard */,
 				4C9161602007272900E63A2D /* Info.plist */,
@@ -270,7 +294,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.MichaeLema.Tangle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -286,7 +310,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.MichaeLema.Tangle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
