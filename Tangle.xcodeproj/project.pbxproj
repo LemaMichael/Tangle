@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19AB5B493C34CBDD60BE39D6 /* Pods_Tangle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8BA364A191B80B728BEB75D /* Pods_Tangle.framework */; };
 		4C3804C42007C5A8009B5025 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3804C32007C5A8009B5025 /* CustomTabBarController.swift */; };
 		4C3804C72007C873009B5025 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3804C62007C873009B5025 /* ColorExtension.swift */; };
 		4C790D4E2007CB6F0022E3B8 /* ConstraintsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C790D4D2007CB6F0022E3B8 /* ConstraintsExtension.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1828F000252BB8A499B110DF /* Pods-Tangle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tangle.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tangle/Pods-Tangle.release.xcconfig"; sourceTree = "<group>"; };
 		4C3804C32007C5A8009B5025 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		4C3804C62007C873009B5025 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		4C790D4D2007CB6F0022E3B8 /* ConstraintsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintsExtension.swift; sourceTree = "<group>"; };
@@ -28,6 +30,8 @@
 		4C91615B2007272900E63A2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C91615E2007272900E63A2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C9161602007272900E63A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BAF5EE0A98883B061D6403B /* Pods-Tangle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tangle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tangle/Pods-Tangle.debug.xcconfig"; sourceTree = "<group>"; };
+		E8BA364A191B80B728BEB75D /* Pods_Tangle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tangle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,12 +39,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19AB5B493C34CBDD60BE39D6 /* Pods_Tangle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F928B2C8E80D872C5A7EB75 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9BAF5EE0A98883B061D6403B /* Pods-Tangle.debug.xcconfig */,
+				1828F000252BB8A499B110DF /* Pods-Tangle.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		4C0B36A52007BAFC0071D038 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +93,8 @@
 			children = (
 				4C9161532007272900E63A2D /* Tangle */,
 				4C9161522007272900E63A2D /* Products */,
+				0F928B2C8E80D872C5A7EB75 /* Pods */,
+				56EABF1FFDE757D983B9F487 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +121,14 @@
 			path = Tangle;
 			sourceTree = "<group>";
 		};
+		56EABF1FFDE757D983B9F487 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8BA364A191B80B728BEB75D /* Pods_Tangle.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -112,9 +136,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C9161632007272900E63A2D /* Build configuration list for PBXNativeTarget "Tangle" */;
 			buildPhases = (
+				88C9084BD0A4FE7575A538C6 /* [CP] Check Pods Manifest.lock */,
 				4C91614D2007272900E63A2D /* Sources */,
 				4C91614E2007272900E63A2D /* Frameworks */,
 				4C91614F2007272900E63A2D /* Resources */,
+				9578C234ABDDAA1B22405F2F /* [CP] Embed Pods Frameworks */,
+				38ECA30FF39CB5A90EEE65D7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,6 +197,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		38ECA30FF39CB5A90EEE65D7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tangle/Pods-Tangle-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		88C9084BD0A4FE7575A538C6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tangle-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9578C234ABDDAA1B22405F2F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tangle/Pods-Tangle-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tangle/Pods-Tangle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4C91614D2007272900E63A2D /* Sources */ = {
@@ -308,6 +389,7 @@
 		};
 		4C9161642007272900E63A2D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BAF5EE0A98883B061D6403B /* Pods-Tangle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -324,6 +406,7 @@
 		};
 		4C9161652007272900E63A2D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1828F000252BB8A499B110DF /* Pods-Tangle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
