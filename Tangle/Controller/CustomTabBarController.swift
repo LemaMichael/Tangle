@@ -15,7 +15,7 @@ class CustomTabBarController: UITabBarController {
         super.viewDidLoad()
         
         //: TODO Add Viewcontrollers here later
-        let portfolioController = UIViewController()
+        let portfolioController = PortfolioController()
         //portfolioController.navigationItem.title = "Portfolio"
         let firstNavController = UINavigationController(rootViewController: portfolioController)
         firstNavController.title = "Porfolio"
@@ -29,8 +29,8 @@ class CustomTabBarController: UITabBarController {
         //: Change height of tabBar's Line to 0.5 Pixels
         let topBorder = CALayer()
         topBorder.frame = CGRect(x: 0, y: 0, width: 1000, height: 0.5)
-        //topBorder.backgroundColor = UIColor.rgb(red: 255, green: 255, blue: 255).cgColor
-        
+        topBorder.backgroundColor = UIColor.gray.cgColor
+
         tabBar.layer.addSublayer(topBorder)
         tabBar.clipsToBounds = true
     }
