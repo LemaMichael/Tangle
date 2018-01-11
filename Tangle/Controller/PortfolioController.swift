@@ -28,6 +28,8 @@ class PortfolioController: UIViewController, UICollectionViewDelegate, UICollect
         cv.delegate = self
         cv.dataSource = self
         cv.showsVerticalScrollIndicator = false
+        cv.alwaysBounceVertical = true
+        cv.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
         return cv
     }()
     
@@ -59,7 +61,7 @@ class PortfolioController: UIViewController, UICollectionViewDelegate, UICollect
         //: Light Blue Color
         view.backgroundColor = UIColor.rgb(red: 59, green: 89, blue: 182)
         setupViews()
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: PortfolioController.cellId)
+        collectionView.register(CoinCell.self, forCellWithReuseIdentifier: PortfolioController.cellId)
     }
 
     //: MARK: - CollectionView methods
@@ -70,8 +72,15 @@ class PortfolioController: UIViewController, UICollectionViewDelegate, UICollect
         return 3
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PortfolioController.cellId, for: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PortfolioController.cellId, for: indexPath) as! CoinCell
+        cell.backgroundColor = .red
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width - 25, height: 130)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
     }
 
 
