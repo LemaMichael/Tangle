@@ -63,7 +63,15 @@ class CoinCell: UICollectionViewCell {
         return view
     }()
     
+    let chart: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     func setUpCell() {
+        //: Light Yellow Color for each cell
+        backgroundColor = UIColor(red: 245/255, green: 192/255, blue: 24/255, alpha: 0.95)
+        
         addSubview(coinLabel)
         addSubview(tickerLabel)
         addSubview(coinPrice)
