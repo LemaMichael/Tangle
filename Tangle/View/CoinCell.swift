@@ -99,4 +99,15 @@ class CoinCell: UICollectionViewCell {
         addConstraintsWithFormat(format: "H:|[v0]|", views: chart)
 
     }
+    
+    func formatCell(withCurrencyType currencyType: CurrencyType) {
+        coinLabel.text = currencyType.name
+        tickerLabel.text = currencyType.rawValue
+        
+        currencyType.requestValue { (value) in
+            DispatchQueue.main.async {
+                self.coinPrice.text = value?.formattedCurrencyString ?? "Failed to get price"
+            }
+        }
+    }
 }

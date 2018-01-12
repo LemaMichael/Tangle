@@ -16,6 +16,8 @@
 		4C9161572007272900E63A2D /* PortfolioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9161562007272900E63A2D /* PortfolioController.swift */; };
 		4C91615C2007272900E63A2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C91615B2007272900E63A2D /* Assets.xcassets */; };
 		4C91615F2007272900E63A2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C91615D2007272900E63A2D /* LaunchScreen.storyboard */; };
+		4CA83B2D2009534D008733D8 /* CurrencyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA83B2C2009534D008733D8 /* CurrencyType.swift */; };
+		4CA83B2F200957B0008733D8 /* FormattedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA83B2E200957B0008733D8 /* FormattedCurrency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		4C91615B2007272900E63A2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C91615E2007272900E63A2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C9161602007272900E63A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CA83B2C2009534D008733D8 /* CurrencyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyType.swift; sourceTree = "<group>"; };
+		4CA83B2E200957B0008733D8 /* FormattedCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedCurrency.swift; sourceTree = "<group>"; };
 		9BAF5EE0A98883B061D6403B /* Pods-Tangle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tangle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tangle/Pods-Tangle.debug.xcconfig"; sourceTree = "<group>"; };
 		E8BA364A191B80B728BEB75D /* Pods_Tangle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tangle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -58,6 +62,7 @@
 		4C0B36A52007BAFC0071D038 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4CA83B2C2009534D008733D8 /* CurrencyType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -84,6 +89,7 @@
 			children = (
 				4C3804C62007C873009B5025 /* ColorExtension.swift */,
 				4C790D4D2007CB6F0022E3B8 /* ConstraintsExtension.swift */,
+				4CA83B2E200957B0008733D8 /* FormattedCurrency.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -259,6 +265,8 @@
 			files = (
 				4C9161572007272900E63A2D /* PortfolioController.swift in Sources */,
 				4C9161552007272900E63A2D /* AppDelegate.swift in Sources */,
+				4CA83B2D2009534D008733D8 /* CurrencyType.swift in Sources */,
+				4CA83B2F200957B0008733D8 /* FormattedCurrency.swift in Sources */,
 				4C3804C42007C5A8009B5025 /* CustomTabBarController.swift in Sources */,
 				4C790D4E2007CB6F0022E3B8 /* ConstraintsExtension.swift in Sources */,
 				4C790D502007E0660022E3B8 /* CoinCell.swift in Sources */,

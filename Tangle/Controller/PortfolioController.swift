@@ -10,6 +10,7 @@ import UIKit
 
 class PortfolioController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    let currencies: [CurrencyType] = [.btc, .eth, .ltc, .xrp, .xmr, .neo]
     static let cellId = "cellId"
     
     let priceButton: UIButton = {
@@ -69,10 +70,13 @@ class PortfolioController: UIViewController, UICollectionViewDelegate, UICollect
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return currencies.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PortfolioController.cellId, for: indexPath) as! CoinCell
+        let currencyType = currencies[indexPath.row]
+        cell.formatCell(withCurrencyType: currencyType)
+        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
