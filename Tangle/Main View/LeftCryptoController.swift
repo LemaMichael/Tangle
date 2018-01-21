@@ -183,6 +183,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
             let newAmount = textField.text!
             if !newAmount.isEmpty {
                 self.coinAmount = newAmount.floatValue
+                self.refresh(tick: self.dataSource.first!)
                 self.LTC_balanceButton.setTitle("LTC: " + newAmount, for: .normal)
             }
         }
