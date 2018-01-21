@@ -9,8 +9,12 @@
 import Foundation
 import UIKit
 import Charts
+import GDAX_Swift
 
 class LeftCryptoController: UIViewController, UIScrollViewDelegate {
+    
+    var dataSource: [TickerResponse] = []
+    let currencies = ["LTC-USD", "LTC-EUR"]
     
     lazy var scrollView: UIScrollView = {
         let scrollview = UIScrollView()
@@ -36,35 +40,65 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
     }()
     
     //: TODO: Change font
-    let marketPrice: UILabel = {
-        let label = UILabel()
-        label.text = "$207.43"
-        label.textColor = .white
-        label.textAlignment = .center
-        label.sizeToFit()
-        label.font = UIFont(name: "Avenir-Heavy", size: 52)
-        return label
+    let marketPrice: UIButton = {
+        let button = UIButton()
+        button.setTitle("$207.43", for: UIControlState.normal)
+        button.setTitleColor(.white, for: .normal)
+        button.contentHorizontalAlignment = .center
+        button.sizeToFit()
+        //label.font = UIFont(name: "Avenir-Heavy", size: 52)
+        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 52)
+        button.addTarget(self, action: #selector(currencyType), for: .touchUpInside)
+        return button
+    }()
+    let LTC_balanceButton: UIButton = {
+        let button = UIButton(type: UIButtonType.system)
+        button.setTitle("LTC: 0", for: UIControlState.normal)
+        button.setTitleColor(.white, for: .normal)
+        button.contentHorizontalAlignment = .center
+        button.sizeToFit()
+        button.titleLabel?.font = UIFont(name: "Avenir-Light", size: 34)
+        button.addTarget(self, action: #selector(holdAmount), for: .touchUpInside)
+        return button
     }()
     
-    let marketChange: UILabel = {
-        let label = UILabel()
-        label.text = "6.05 %"
-        label.textColor = .white
-        label.textAlignment = .center
-        label.sizeToFit()
-        label.font = UIFont(name: "Avenir-Light", size: 34)
-        return label
+    let currencyBalance: UIButton = {
+        let button = UIButton(type: UIButtonType.custom)
+        button.setTitle("USD: 0.00", for: UIControlState.normal)
+        button.setTitleColor(.white, for: .normal)
+        button.contentHorizontalAlignment = .center
+        button.sizeToFit()
+        button.titleLabel?.font = UIFont(name: "Avenir-Light", size: 15)
+        //button.addTarget(self, action: #selector(NOTHING), for: .touchUpInside)
+        return button
     }()
+    
     let litecoinChart: LineChartView = {
         let chart = LineChartView()
         //chart.backgroundColor = .red
         return chart
     }()
     
+    var currentCurrency: String = "LTC-USD" {
+        didSet {
+            print(oldValue)
+            GDAX.feed.disconectFrom(channel: .ticker, product: oldValue)
+            let values = currentCurrency.split(separator: "-")
+            let from = gdax_products.init(rawValue: String(values[0]))
+            let to = gdax_products.init(rawValue: String(values[1]))
+            let _ = GDAX.feed.subscribeTicker(for: [gdax_value(from:from!, to: to!)]) { (tick) in
+                self.refresh(tick: tick)
+                self.dataSource.insert(tick, at: 0)
+                //self.tableView.insertRows(at: [IndexPath(item: 0, section: 0)], with: .automatic)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.68, green: 0.68, blue: 0.69, alpha: 0.5)
         setupViews()
+        connectToSocket()
     }
     
     func setupViews() {
@@ -73,7 +107,8 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         
         contentView.addSubview(imageView)
         contentView.addSubview(marketPrice)
-        contentView.addSubview(marketChange)
+        contentView.addSubview(LTC_balanceButton)
+        contentView.addSubview(currencyBalance)
         
         
         //: USING SCROLL VIEW WITH AUTO LAYOUT IN 3 STEPS
@@ -99,10 +134,60 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         contentView.addConstraint(NSLayoutConstraint(item: marketPrice, attribute: .centerX, relatedBy: .equal, toItem: self.contentView, attribute: .centerX, multiplier: 1, constant: 0))
         
         //: MarketChange Constraints
-        contentView.addConstraint(NSLayoutConstraint(item: marketChange, attribute: .centerX, relatedBy: .equal, toItem: self.contentView, attribute: .centerX, multiplier: 1, constant: 0))
+        contentView.addConstraint(NSLayoutConstraint(item: LTC_balanceButton, attribute: .centerX, relatedBy: .equal, toItem: self.contentView, attribute: .centerX, multiplier: 1, constant: 0))
+        
+        //: CurrencyBalance Constraints
+         contentView.addConstraint(NSLayoutConstraint(item: currencyBalance, attribute: .centerX, relatedBy: .equal, toItem: self.contentView, attribute: .centerX, multiplier: 1, constant: 0))
         
         //: Vertical Constraints
-        contentView.addConstraintsWithFormat(format: "V:|-45-[v0]-5-[v1][v2]", views: imageView, marketPrice, marketChange)
+        contentView.addConstraintsWithFormat(format: "V:|-45-[v0]-5-[v1][v2][v3]", views: imageView, marketPrice, LTC_balanceButton, currencyBalance)
+    }
+    
+    func connectToSocket() {
+        dataSource = []
+        currentCurrency = "LTC-USD"
+        GDAX.feed.onConnectionChange = []
+        GDAX.feed.onConnectionChange?.append({ (connected) in
+            if !connected {
+                print("Not Connected!")
+            } else {
+                print("Connected!")
+            }
+        })
+    }
+    
+    func refresh(tick: TickerResponse) {
+        
+        
+        self.marketPrice.setTitle(tick.formattedPrice, for: .normal)
+        
+    }
+    
+    //: MARK: - Button Targets
+    @objc func holdAmount() {
+        print("Hold amount tapped")
+        let alertController = UIAlertController(title: "LTC Amount", message: "Enter size", preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "100.00000000"
+            textField.keyboardType = UIKeyboardType.decimalPad
+        }
+        let doneAction = UIAlertAction(title: "Done", style: .default) { (action) in
+            let textField = alertController.textFields![0] as UITextField
+            let newAmount = textField.text!
+            if !newAmount.isEmpty {
+                self.LTC_balanceButton.setTitle("LTC: " + newAmount, for: .normal)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(doneAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func currencyType() {
+        //: TODO: ADD Other currency support
+        print("Curreny button tapped")
     }
     
     

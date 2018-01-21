@@ -1,0 +1,6 @@
+framework module GDAX_Swift {
+  umbrella header "GDAX_Swift-umbrella.h"
+
+  export *
+  module * { export * }
+}
