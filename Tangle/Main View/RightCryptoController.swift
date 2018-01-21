@@ -13,7 +13,9 @@ class RightCryptoController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        //: TODO: Change Color?
+        view.backgroundColor = UIColor(red: 0.11, green: 0.15, blue: 0.18, alpha: 0.5)
+        
         
     }
     

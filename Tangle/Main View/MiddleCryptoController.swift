@@ -13,7 +13,7 @@ class MiddleCryptoController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 245/255, green: 192/255, blue: 24/255, alpha: 0.95)
         
     }
     
