@@ -81,6 +81,16 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         return chart
     }()
     
+    lazy var addressButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("Address: LfmXEnjn7cYepTVFQdQVaKRwC4Pb4eGb8v", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Light", size: 12)
+        button.contentHorizontalAlignment = .center
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(donationResponse), for: .touchUpInside)
+        return button
+    }()
+    
     var currentCurrency: String = "LTC-USD" {
         didSet {
             print(oldValue)
@@ -111,6 +121,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         contentView.addSubview(marketPrice)
         contentView.addSubview(LTC_balanceButton)
         contentView.addSubview(currencyBalance)
+        contentView.addSubview(addressButton)
         
         
         //: USING SCROLL VIEW WITH AUTO LAYOUT IN 3 STEPS
@@ -141,8 +152,14 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         //: CurrencyBalance Constraints
          contentView.addConstraint(NSLayoutConstraint(item: currencyBalance, attribute: .centerX, relatedBy: .equal, toItem: self.contentView, attribute: .centerX, multiplier: 1, constant: 0))
         
+        //: Address Textfield Constraints
+        contentView.addConstraintsWithFormat(format: "H:|[v0]|", views: addressButton)
+        contentView.addConstraintsWithFormat(format: "V:[v0(25)]|", views: addressButton)
+
+        
         //: Vertical Constraints
         contentView.addConstraintsWithFormat(format: "V:|-45-[v0]-5-[v1][v2][v3]", views: imageView, marketPrice, LTC_balanceButton, currencyBalance)
+        
     }
     
     func connectToSocket() {
@@ -175,7 +192,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         print("Hold amount tapped")
         let alertController = UIAlertController(title: "LTC Amount", message: "Enter size", preferredStyle: .alert)
         alertController.addTextField { (textField) in
-            textField.placeholder = "100.00000000"
+            textField.placeholder = "72.42100000"
             textField.keyboardType = UIKeyboardType.decimalPad
         }
         let doneAction = UIAlertAction(title: "Done", style: .default) { (action) in
@@ -192,6 +209,19 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         alertController.addAction(doneAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func donationResponse() {
+        let alertController = UIAlertController(title: "", message: "Address Copied!" , preferredStyle: .alert)
+        present(alertController, animated: true, completion: nil)
+        
+        //: Dismiss after a few seconds
+        let when = DispatchTime.now() + 1
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            //: Copy the address
+            UIPasteboard.general.string = "LfmXEnjn7cYepTVFQdQVaKRwC4Pb4eGb8v"
+            alertController.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func currencyType() {
