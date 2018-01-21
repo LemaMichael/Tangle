@@ -2,13 +2,22 @@ PODS:
   - Charts (3.0.5):
     - Charts/Core (= 3.0.5)
   - Charts/Core (3.0.5)
+  - CryptoSwift (0.8.0)
+  - GDAX_Swift (0.1.5):
+    - CryptoSwift
+    - Starscream
+  - Starscream (3.0.3)
 
 DEPENDENCIES:
   - Charts
+  - GDAX_Swift (~> 0.1)
 
 SPEC CHECKSUMS:
   Charts: 45cdc985b764c838b35ee47eb1365d15735f6d1a
+  CryptoSwift: f81907430ebbe38b8404b4f6fb40f3c576a8755f
+  GDAX_Swift: 2b42d7b326b053b36dca12ec0544bc43e74cf68b
+  Starscream: dfb1b3f39506717ee52b67fb48de0c8269504cbc
 
-PODFILE CHECKSUM: 65dabb1e04e53665abd4857da65bbec505152b52
+PODFILE CHECKSUM: fe04c2c3f2c29dd41b71b2328e8b27c48208c424
 
 COCOAPODS: 1.3.1
