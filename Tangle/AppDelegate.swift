@@ -22,8 +22,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         //: Using a custom UITabBarController
-        window?.rootViewController = CustomTabBarController()
+        //window?.rootViewController = CustomTabBarController()
+        
+        //: Snapchat 3 Way Swipe
+        showSwipeController()
+        
         return true
+    }
+    
+    func showSwipeController() {
+        let left = LeftCryptoController()
+        let middle = MiddleCryptoController()
+        let right = RightCryptoController()
+        //: The bottom and top Controller is not being used
+        
+        let swipeContainter = SnapContainerViewController.containerViewWith(left, middleVC: middle, rightVC: right, topVC: nil, bottomVC: nil, directionLockDisabled: false)
+        window?.rootViewController = swipeContainter
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -18,6 +18,11 @@
 		4C91615F2007272900E63A2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C91615D2007272900E63A2D /* LaunchScreen.storyboard */; };
 		4CA83B2D2009534D008733D8 /* CurrencyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA83B2C2009534D008733D8 /* CurrencyType.swift */; };
 		4CA83B2F200957B0008733D8 /* FormattedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA83B2E200957B0008733D8 /* FormattedCurrency.swift */; };
+		4CDCE9AD20141C02005BF892 /* SnapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCE9AC20141C02005BF892 /* SnapContainerViewController.swift */; };
+		4CDCE9AF20141C84005BF892 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCE9AE20141C84005BF892 /* VerticalScrollViewController.swift */; };
+		4CDCE9B120141D5E005BF892 /* LeftCryptoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCE9B020141D5E005BF892 /* LeftCryptoController.swift */; };
+		4CDCE9B320141D72005BF892 /* MiddleCryptoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCE9B220141D72005BF892 /* MiddleCryptoController.swift */; };
+		4CDCE9B520141D81005BF892 /* RightCryptoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCE9B420141D81005BF892 /* RightCryptoController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,11 @@
 		4C9161602007272900E63A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CA83B2C2009534D008733D8 /* CurrencyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyType.swift; sourceTree = "<group>"; };
 		4CA83B2E200957B0008733D8 /* FormattedCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedCurrency.swift; sourceTree = "<group>"; };
+		4CDCE9AC20141C02005BF892 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
+		4CDCE9AE20141C84005BF892 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
+		4CDCE9B020141D5E005BF892 /* LeftCryptoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftCryptoController.swift; sourceTree = "<group>"; };
+		4CDCE9B220141D72005BF892 /* MiddleCryptoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleCryptoController.swift; sourceTree = "<group>"; };
+		4CDCE9B420141D81005BF892 /* RightCryptoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightCryptoController.swift; sourceTree = "<group>"; };
 		9BAF5EE0A98883B061D6403B /* Pods-Tangle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tangle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tangle/Pods-Tangle.debug.xcconfig"; sourceTree = "<group>"; };
 		E8BA364A191B80B728BEB75D /* Pods_Tangle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tangle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -115,16 +125,37 @@
 		4C9161532007272900E63A2D /* Tangle */ = {
 			isa = PBXGroup;
 			children = (
+				4C9161542007272900E63A2D /* AppDelegate.swift */,
 				4C3804C52007C85E009B5025 /* Extensions */,
 				4C0B36A52007BAFC0071D038 /* Model */,
 				4C0B36A62007BB010071D038 /* View */,
 				4C0B36A72007BB070071D038 /* Controller */,
-				4C9161542007272900E63A2D /* AppDelegate.swift */,
+				4CFD2EF0200973D5009ADC7B /* Main View */,
 				4C91615B2007272900E63A2D /* Assets.xcassets */,
 				4C91615D2007272900E63A2D /* LaunchScreen.storyboard */,
 				4C9161602007272900E63A2D /* Info.plist */,
 			);
 			path = Tangle;
+			sourceTree = "<group>";
+		};
+		4CFD2EF0200973D5009ADC7B /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				4CDCE9B020141D5E005BF892 /* LeftCryptoController.swift */,
+				4CDCE9B220141D72005BF892 /* MiddleCryptoController.swift */,
+				4CDCE9B420141D81005BF892 /* RightCryptoController.swift */,
+				4CFD2EF120097408009ADC7B /* Container View */,
+			);
+			path = "Main View";
+			sourceTree = "<group>";
+		};
+		4CFD2EF120097408009ADC7B /* Container View */ = {
+			isa = PBXGroup;
+			children = (
+				4CDCE9AC20141C02005BF892 /* SnapContainerViewController.swift */,
+				4CDCE9AE20141C84005BF892 /* VerticalScrollViewController.swift */,
+			);
+			path = "Container View";
 			sourceTree = "<group>";
 		};
 		56EABF1FFDE757D983B9F487 /* Frameworks */ = {
@@ -268,7 +299,12 @@
 				4CA83B2D2009534D008733D8 /* CurrencyType.swift in Sources */,
 				4CA83B2F200957B0008733D8 /* FormattedCurrency.swift in Sources */,
 				4C3804C42007C5A8009B5025 /* CustomTabBarController.swift in Sources */,
+				4CDCE9AD20141C02005BF892 /* SnapContainerViewController.swift in Sources */,
+				4CDCE9B120141D5E005BF892 /* LeftCryptoController.swift in Sources */,
+				4CDCE9B320141D72005BF892 /* MiddleCryptoController.swift in Sources */,
 				4C790D4E2007CB6F0022E3B8 /* ConstraintsExtension.swift in Sources */,
+				4CDCE9B520141D81005BF892 /* RightCryptoController.swift in Sources */,
+				4CDCE9AF20141C84005BF892 /* VerticalScrollViewController.swift in Sources */,
 				4C790D502007E0660022E3B8 /* CoinCell.swift in Sources */,
 				4C3804C72007C873009B5025 /* ColorExtension.swift in Sources */,
 			);
