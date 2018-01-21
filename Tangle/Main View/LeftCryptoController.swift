@@ -16,6 +16,8 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
     var dataSource: [TickerResponse] = []
     let currencies = ["LTC-USD", "LTC-EUR"]
     
+    var coinAmount: Float?
+    
     lazy var scrollView: UIScrollView = {
         let scrollview = UIScrollView()
         scrollview.backgroundColor = .clear
@@ -157,10 +159,15 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
     }
     
     func refresh(tick: TickerResponse) {
-        
-        
+        print("Called")
+        if (coinAmount != nil) {
+            if let floatPrice = tick.floatPrice {
+                let price = tick.currentPriceFormatter.string(from: NSNumber(value: floatPrice * coinAmount!))!
+                print(price)
+                self.currencyBalance.setTitle("USD: " + price, for: .normal)
+            }
+        }
         self.marketPrice.setTitle(tick.formattedPrice, for: .normal)
-        
     }
     
     //: MARK: - Button Targets
@@ -175,6 +182,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
             let textField = alertController.textFields![0] as UITextField
             let newAmount = textField.text!
             if !newAmount.isEmpty {
+                self.coinAmount = newAmount.floatValue
                 self.LTC_balanceButton.setTitle("LTC: " + newAmount, for: .normal)
             }
         }
