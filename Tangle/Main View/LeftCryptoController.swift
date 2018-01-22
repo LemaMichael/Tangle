@@ -75,9 +75,9 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
-    let litecoinChart: LineChartView = {
+    lazy var litecoinChart: LineChartView = {
         let chart = LineChartView()
-        //chart.backgroundColor = .red
+        chart.backgroundColor = .red
         return chart
     }()
     
@@ -121,6 +121,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         contentView.addSubview(marketPrice)
         contentView.addSubview(LTC_balanceButton)
         contentView.addSubview(currencyBalance)
+        contentView.addSubview(litecoinChart)
         contentView.addSubview(addressButton)
         
         
@@ -152,13 +153,18 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         //: CurrencyBalance Constraints
          contentView.addConstraint(NSLayoutConstraint(item: currencyBalance, attribute: .centerX, relatedBy: .equal, toItem: self.contentView, attribute: .centerX, multiplier: 1, constant: 0))
         
+        //: Chart Constraints
+        contentView.addConstraintsWithFormat(format: "H:|-[v0]-|", views: litecoinChart)
+        contentView.addConstraint(NSLayoutConstraint(item: litecoinChart, attribute: .bottom, relatedBy: .equal, toItem: addressButton, attribute: .top, multiplier: 1, constant: -10))
+       
+        
         //: Address Textfield Constraints
         contentView.addConstraintsWithFormat(format: "H:|[v0]|", views: addressButton)
         contentView.addConstraintsWithFormat(format: "V:[v0(25)]|", views: addressButton)
 
-        
         //: Vertical Constraints
-        contentView.addConstraintsWithFormat(format: "V:|-45-[v0]-5-[v1][v2][v3]", views: imageView, marketPrice, LTC_balanceButton, currencyBalance)
+        contentView.addConstraintsWithFormat(format: "V:|-45-[v0]-5-[v1][v2][v3]-5-[v4]", views: imageView, marketPrice, LTC_balanceButton, currencyBalance, litecoinChart)
+        
         
     }
     
