@@ -15,9 +15,7 @@ class MiddleCryptoController: UIViewController, UIScrollViewDelegate {
     
     var dataSource: [TickerResponse] = []
     let currencies = ["BTC-USD", "BTC-EUR"]
-    
-    var coinAmount: Float?
-    
+        
     lazy var scrollView: UIScrollView = {
         let scrollview = UIScrollView()
         scrollview.backgroundColor = .clear
@@ -112,6 +110,11 @@ class MiddleCryptoController: UIViewController, UIScrollViewDelegate {
         view.backgroundColor = UIColor(red: 245/255, green: 192/255, blue: 24/255, alpha: 0.95)
         setupViews()
         connectToSocket()
+        
+        if !BTCAmount().isZero {
+            self.BTC_balanceButton.setTitle("BTC: \(BTCAmount())", for: .normal)
+        }
+        
     }
     func setupViews() {
         view.addSubview(scrollView)
@@ -180,12 +183,14 @@ class MiddleCryptoController: UIViewController, UIScrollViewDelegate {
     }
     
     func refresh(tick: TickerResponse) {
-        print("Called")
-        if (coinAmount != nil) {
+        print("BTC Called")
+        if (!BTCAmount().isZero) {
             if let floatPrice = tick.floatPrice {
-                let price = tick.currentPriceFormatter.string(from: NSNumber(value: floatPrice * coinAmount!))!
-                print(price)
+                let price = tick.currentPriceFormatter.string(from: NSNumber(value: floatPrice * BTCAmount()))!
+                //print(price)
                 self.currencyBalance.setTitle("USD: " + price, for: .normal)
+            } else {
+                self.currencyBalance.setTitle("USD: 0.00" , for: .normal)
             }
         }
         self.marketPrice.setTitle(tick.formattedPrice, for: .normal)
@@ -203,7 +208,8 @@ class MiddleCryptoController: UIViewController, UIScrollViewDelegate {
             let textField = alertController.textFields![0] as UITextField
             let newAmount = textField.text!
             if !newAmount.isEmpty {
-                self.coinAmount = newAmount.floatValue
+                //: Save the BTC coin input amount
+                UserDefaults.standard.setBTCAmount(value: newAmount.floatValue)
                 self.refresh(tick: self.dataSource.first!)
                 self.BTC_balanceButton.setTitle("BTC: " + newAmount, for: .normal)
             }
@@ -233,6 +239,9 @@ class MiddleCryptoController: UIViewController, UIScrollViewDelegate {
         print("Curreny button tapped")
     }
     
-    
-    
+    //: NSUSERDefaults
+    fileprivate func BTCAmount() -> Float {
+        return UserDefaults.standard.availableBTC()
+    }
+
 }

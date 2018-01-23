@@ -15,9 +15,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
     
     var dataSource: [TickerResponse] = []
     let currencies = ["LTC-USD", "LTC-EUR"]
-    
-    var coinAmount: Float?
-    
+        
     lazy var scrollView: UIScrollView = {
         let scrollview = UIScrollView()
         scrollview.backgroundColor = .clear
@@ -113,6 +111,12 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         setupViews()
         connectToSocket()
         //GDAXProduct.init(product: "LTC-USD")
+        
+        if LTCAmount() != 0 {
+            //self.refresh(tick: self.dataSource.first!)
+            self.LTC_balanceButton.setTitle("LTC: \(LTCAmount())", for: .normal)
+        }
+        
     }
     
     func setupViews() {
@@ -182,12 +186,14 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
     }
     
     func refresh(tick: TickerResponse) {
-        print("Called")
-        if (coinAmount != nil) {
+        print("LTC Called")
+        if (!LTCAmount().isZero) {
             if let floatPrice = tick.floatPrice {
-                let price = tick.currentPriceFormatter.string(from: NSNumber(value: floatPrice * coinAmount!))!
-                print(price)
+                let price = tick.currentPriceFormatter.string(from: NSNumber(value: floatPrice * LTCAmount()))!
+                //print(price)
                 self.currencyBalance.setTitle("USD: " + price, for: .normal)
+            } else {
+                self.currencyBalance.setTitle("USD: 0.00" , for: .normal)
             }
         }
         self.marketPrice.setTitle(tick.formattedPrice, for: .normal)
@@ -205,7 +211,8 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
             let textField = alertController.textFields![0] as UITextField
             let newAmount = textField.text!
             if !newAmount.isEmpty {
-                self.coinAmount = newAmount.floatValue
+                //: Save the ltc coin input amount
+                UserDefaults.standard.setLTCAmount(value: newAmount.floatValue)
                 self.refresh(tick: self.dataSource.first!)
                 self.LTC_balanceButton.setTitle("LTC: " + newAmount, for: .normal)
             }
@@ -235,5 +242,9 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         print("Curreny button tapped")
     }
     
+    //: NSUSERDefaults
+    fileprivate func LTCAmount() -> Float {
+        return UserDefaults.standard.availableLTC()
+    }
     
 }

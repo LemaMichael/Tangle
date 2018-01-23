@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		19AB5B493C34CBDD60BE39D6 /* Pods_Tangle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8BA364A191B80B728BEB75D /* Pods_Tangle.framework */; };
+		4C14EEAA201700B1009205BE /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C14EEA9201700B1009205BE /* UserDefaultsExtension.swift */; };
 		4C3804C42007C5A8009B5025 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3804C32007C5A8009B5025 /* CustomTabBarController.swift */; };
 		4C3804C72007C873009B5025 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3804C62007C873009B5025 /* ColorExtension.swift */; };
 		4C3AD81F20146DF900BCBD33 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AD81E20146DF900BCBD33 /* StringExtension.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		1828F000252BB8A499B110DF /* Pods-Tangle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tangle.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tangle/Pods-Tangle.release.xcconfig"; sourceTree = "<group>"; };
+		4C14EEA9201700B1009205BE /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
 		4C3804C32007C5A8009B5025 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		4C3804C62007C873009B5025 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		4C3AD81E20146DF900BCBD33 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				4C790D4D2007CB6F0022E3B8 /* ConstraintsExtension.swift */,
 				4CA83B2E200957B0008733D8 /* FormattedCurrency.swift */,
 				4C3AD81E20146DF900BCBD33 /* StringExtension.swift */,
+				4C14EEA9201700B1009205BE /* UserDefaultsExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				4CDCE9B320141D72005BF892 /* MiddleCryptoController.swift in Sources */,
 				4C3AD81F20146DF900BCBD33 /* StringExtension.swift in Sources */,
 				4C790D4E2007CB6F0022E3B8 /* ConstraintsExtension.swift in Sources */,
+				4C14EEAA201700B1009205BE /* UserDefaultsExtension.swift in Sources */,
 				4CDCE9B520141D81005BF892 /* RightCryptoController.swift in Sources */,
 				4CDCE9AF20141C84005BF892 /* VerticalScrollViewController.swift in Sources */,
 				4C790D502007E0660022E3B8 /* CoinCell.swift in Sources */,

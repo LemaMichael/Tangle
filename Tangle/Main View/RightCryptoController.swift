@@ -15,9 +15,7 @@ class RightCryptoController: UIViewController, UIScrollViewDelegate {
     
     var dataSource: [TickerResponse] = []
     let currencies = ["ETH-USD", "ETH-EUR"]
-    
-    var coinAmount: Float?
-    
+        
     lazy var scrollView: UIScrollView = {
         let scrollview = UIScrollView()
         scrollview.backgroundColor = .clear
@@ -113,6 +111,10 @@ class RightCryptoController: UIViewController, UIScrollViewDelegate {
         view.backgroundColor = UIColor(red: 0.11, green: 0.15, blue: 0.18, alpha: 0.5)
         setupViews()
         connectToSocket()
+        
+        if !ETHAmount().isZero {
+            self.ETH_balanceButton.setTitle("ETH: \(ETHAmount())", for: .normal)
+        }
     }
     func setupViews() {
         view.addSubview(scrollView)
@@ -181,12 +183,14 @@ class RightCryptoController: UIViewController, UIScrollViewDelegate {
     }
     
     func refresh(tick: TickerResponse) {
-        print("Called")
-        if (coinAmount != nil) {
+        print("ETH Called")
+        if (!ETHAmount().isZero) {
             if let floatPrice = tick.floatPrice {
-                let price = tick.currentPriceFormatter.string(from: NSNumber(value: floatPrice * coinAmount!))!
-                print(price)
+                let price = tick.currentPriceFormatter.string(from: NSNumber(value: floatPrice * ETHAmount()))!
+                //print(price)
                 self.currencyBalance.setTitle("USD: " + price, for: .normal)
+            } else {
+                self.currencyBalance.setTitle("USD: 0.00" , for: .normal)
             }
         }
         self.marketPrice.setTitle(tick.formattedPrice, for: .normal)
@@ -204,7 +208,8 @@ class RightCryptoController: UIViewController, UIScrollViewDelegate {
             let textField = alertController.textFields![0] as UITextField
             let newAmount = textField.text!
             if !newAmount.isEmpty {
-                self.coinAmount = newAmount.floatValue
+                //: Save the ETH coin input amount
+                UserDefaults.standard.setETHAmount(value: newAmount.floatValue)
                 self.refresh(tick: self.dataSource.first!)
                 self.ETH_balanceButton.setTitle("ETH: " + newAmount, for: .normal)
             }
@@ -234,5 +239,9 @@ class RightCryptoController: UIViewController, UIScrollViewDelegate {
         print("Curreny button tapped")
     }
     
+    //: NSUSERDefaults
+    fileprivate func ETHAmount() -> Float {
+        return UserDefaults.standard.availableETH()
+    }
     
 }
