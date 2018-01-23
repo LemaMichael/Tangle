@@ -73,9 +73,11 @@ class MiddleCryptoController: UIViewController, UIScrollViewDelegate {
     }()
     
     lazy var bitcoinChart: LineChartView = {
-        //: TODO: - CHANGE THIS BACK
         let chart = LineChartView()
+        //: TODO: - CHANGE THIS BACK
         chart.backgroundColor = .clear
+        chart.noDataText = ""
+        chart.noDataTextColor = .clear
         return chart
     }()
     
