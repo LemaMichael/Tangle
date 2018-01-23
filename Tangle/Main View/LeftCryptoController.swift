@@ -74,9 +74,11 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
     }()
     
     lazy var litecoinChart: LineChartView = {
-        //: TODO: - CHANGE THIS BACK
         let chart = LineChartView()
+        //: TODO: - CHANGE THIS BACK
         chart.backgroundColor = .clear
+        chart.noDataText = ""
+        chart.noDataTextColor = .clear
         return chart
     }()
     
