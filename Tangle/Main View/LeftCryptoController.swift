@@ -111,6 +111,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         view.backgroundColor = UIColor(red: 0.68, green: 0.68, blue: 0.69, alpha: 0.5)
         setupViews()
         connectToSocket()
+        GDAXProduct.init(product: "LTC-USD")
     }
     
     func setupViews() {
