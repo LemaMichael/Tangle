@@ -76,8 +76,9 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
     }()
     
     lazy var litecoinChart: LineChartView = {
+        //: TODO: - CHANGE THIS BACK
         let chart = LineChartView()
-        chart.backgroundColor = .red
+        chart.backgroundColor = .clear
         return chart
     }()
     
@@ -165,8 +166,6 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
 
         //: Vertical Constraints
         contentView.addConstraintsWithFormat(format: "V:|-45-[v0]-5-[v1][v2][v3]-5-[v4]", views: imageView, marketPrice, LTC_balanceButton, currencyBalance, litecoinChart)
-        
-        
     }
     
     func connectToSocket() {
