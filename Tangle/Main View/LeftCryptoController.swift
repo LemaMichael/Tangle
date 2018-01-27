@@ -11,10 +11,11 @@ import UIKit
 import Charts
 import GDAX_Swift
 
-class LeftCryptoController: UIViewController, UIScrollViewDelegate {
+class LeftCryptoController: UIViewController, UIScrollViewDelegate, ChartViewDelegate {
     
     var dataSource: [TickerResponse] = []
     let currencies = ["LTC-USD", "LTC-EUR"]
+    var months: [Double]!
         
     lazy var scrollView: UIScrollView = {
         let scrollview = UIScrollView()
@@ -76,9 +77,36 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
     lazy var litecoinChart: LineChartView = {
         let chart = LineChartView()
         //: TODO: - CHANGE THIS BACK
-        chart.backgroundColor = .red
+       // chart.backgroundColor = .red
         //chart.noDataText = ""
         //chart.noDataTextColor = .clear
+        
+        chart.delegate = self
+        chart.pinchZoomEnabled = false
+        //: (zooming in and out by gesture) for the chart
+        chart.setScaleEnabled(false)
+        
+        chart.chartDescription?.text = ""
+        
+        /*
+         https://stackoverflow.com/questions/36713996/how-to-hide-labels-in-ios-charts
+        */
+        //chart.leftAxis.drawLabelsEnabled = false
+        chart.legend.enabled = false
+        
+        //: Removes the x Axis values from the top and the grid lines as well
+        chart.xAxis.enabled = false
+        chart.xAxis.drawGridLinesEnabled = false
+
+        chart.leftAxis.drawGridLinesEnabled = false
+        chart.rightAxis.drawGridLinesEnabled = false
+        chart.drawBordersEnabled = false
+        chart.drawGridBackgroundEnabled = false
+        
+        /*
+        chart.leftAxis.enabled = false
+        chart.rightAxis.enabled = false
+*/
         return chart
     }()
     
@@ -118,6 +146,14 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
             //self.refresh(tick: self.dataSource.first!)
             self.LTC_balanceButton.setTitle("LTC: \(LTCAmount())", for: .normal)
         }
+        
+        //: Setting up chart data
+        months = [1,2,3,4,5,6,7,8,9,10,11,12]
+        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
+        setChart(dataPoints: unitsSold, values: months)
+    
+        //: Animate the chart
+        //litecoinChart.animate(xAxisDuration: 1.0, yAxisDuration: 0)
         
     }
     
@@ -162,7 +198,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
          contentView.addConstraint(NSLayoutConstraint(item: currencyBalance, attribute: .centerX, relatedBy: .equal, toItem: self.contentView, attribute: .centerX, multiplier: 1, constant: 0))
         
         //: Chart Constraints
-        contentView.addConstraintsWithFormat(format: "H:|-[v0]-|", views: litecoinChart)
+        contentView.addConstraintsWithFormat(format: "H:|[v0]|", views: litecoinChart)
         contentView.addConstraint(NSLayoutConstraint(item: litecoinChart, attribute: .bottom, relatedBy: .equal, toItem: addressButton, attribute: .top, multiplier: 1, constant: -10))
        
         
@@ -249,6 +285,62 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
     //: NSUSERDefaults
     fileprivate func LTCAmount() -> Float {
         return UserDefaults.standard.availableLTC()
+    }
+    
+    //: MARK:- Chart functions
+    func setChart(dataPoints:[Double], values: [Double]) {
+        /*
+         Reference: https://medium.com/@OsianSmith/creating-a-line-chart-in-swift-3-and-ios-10-2f647c95392e
+         */
+        litecoinChart.noDataText = "You need to provide data for the chart."
+        
+        //: We need to create a BarChartData object and set it as the barChartView’s data attribute.
+        //: The following line will eventually be displayed on the graph
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            //: We set the X and Y values in a data chart entry
+            let dataEntry = ChartDataEntry(x: values[i], y: dataPoints[i])
+            dataEntries.append(dataEntry)
+        }
+        
+        //: Here we convert dataEntries to a LineChartDataSet
+        let lineDataSet = LineChartDataSet(values: dataEntries, label: nil)
+        lineDataSet.axisDependency = .left
+
+        //: No Y-values will be displayed
+        lineDataSet.drawValuesEnabled = false
+        //: Only white Color will be displayed
+        lineDataSet.setColor(UIColor.white)
+        //lineDataSet.setCircleColor(UIColor.white)
+        lineDataSet.lineWidth = 3
+        
+        //: Disables circles at points
+        lineDataSet.drawCirclesEnabled = false
+        
+        //: Modifying the DataSet being filled
+        lineDataSet.drawFilledEnabled = false
+        lineDataSet.fillColor = NSUIColor.white
+        lineDataSet.fillAlpha = 65 / 255.0
+        
+        
+        //: Displays the Y-Values when tapped
+        let marker: BalloonMarker = BalloonMarker(color: UIColor.white, font: UIFont.systemFont(ofSize: 12.0), textColor: .darkGray, insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
+        marker.minimumSize = CGSize(width: 40.0, height: 40.0)
+        litecoinChart.marker = marker
+
+        
+        //: The x and y lines across the chart
+        lineDataSet.highlightColor = .white
+        //line.drawCirclesEnabled = false
+        
+        //: This is the object that will be added to the chart
+        let data = LineChartData()
+        //: Adds the line to the dataSet
+        data.addDataSet(lineDataSet)
+        
+        //: This adds the chart data to the chart and causes an update
+        litecoinChart.data = data
     }
     
 }
