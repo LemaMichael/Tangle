@@ -19,7 +19,7 @@ class GDAXProduct {
 
             do {
                 let jsonArray = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [Array<Any>]
-                
+
                 /*
                  [
                     [ time, low, high, open, close, volume ],
@@ -27,16 +27,32 @@ class GDAXProduct {
                  ...
                  ]
                 */
-                
+
                 //print(jsonArray)
                 for array in jsonArray {
-                    print(array)
+                    let unixTimeStamp = array[0] as! Double
+                    let date = Date(timeIntervalSince1970: unixTimeStamp)
+                    //print(date)
+
+
+                    print(date, array[1])
                 }
-                
+
             } catch let error as NSError {
                 print(error)
             }
         }).resume()
+        
+        /*
+        var urlComponents = URLComponents(string: productURL)!
+        urlComponents.queryItems = [
+            URLQueryItem(name: "start", value: String(1516792800)),
+            URLQueryItem(name: "end", value: String(1516879200)),
+            URLQueryItem(name: "granularity", value: String(60))
+        ]
+        print(urlComponents.url!)
+         https://api.gdax.com/products/LTC-USD/candles?start:1517036760&end:1517015760&granularity:300
+ */
     }
     
     func fetch(start: Date, end: Date, granularity: Int) {
@@ -57,8 +73,9 @@ class GDAXProduct {
         //: GDAX has a limit of returning maximum of 200, per request.
         let timeLapse = granularity * 60
         
-        
-        
-        
     }
+    
+   
+    
+    
 }

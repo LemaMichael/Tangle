@@ -69,16 +69,16 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         button.contentHorizontalAlignment = .center
         button.sizeToFit()
         button.titleLabel?.font = UIFont(name: "Avenir-Light", size: 15)
-        //button.addTarget(self, action: #selector(NOTHING), for: .touchUpInside)
+       // button.addTarget(self, action: #selector(reconnectToSocket), for: .touchUpInside)
         return button
     }()
     
     lazy var litecoinChart: LineChartView = {
         let chart = LineChartView()
         //: TODO: - CHANGE THIS BACK
-        chart.backgroundColor = .clear
-        chart.noDataText = ""
-        chart.noDataTextColor = .clear
+        chart.backgroundColor = .red
+        //chart.noDataText = ""
+        //chart.noDataTextColor = .clear
         return chart
     }()
     
@@ -94,7 +94,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
     
     var currentCurrency: String = "LTC-USD" {
         didSet {
-            print(oldValue)
+            print("This is the old value!: \(oldValue)")
             GDAX.feed.disconectFrom(channel: .ticker, product: oldValue)
             let values = currentCurrency.split(separator: "-")
             let from = gdax_products.init(rawValue: String(values[0]))
@@ -112,7 +112,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         view.backgroundColor = UIColor(red: 0.68, green: 0.68, blue: 0.69, alpha: 0.5)
         setupViews()
         connectToSocket()
-        //GDAXProduct.init(product: "LTC-USD")
+        GDAXProduct.init(product: "LTC-USD")
         
         if LTCAmount() != 0 {
             //self.refresh(tick: self.dataSource.first!)
@@ -181,6 +181,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         GDAX.feed.onConnectionChange?.append({ (connected) in
             if !connected {
                 print("Not Connected!")
+                //: TODO: User is not connected to wifi therefore displays are not accurate
             } else {
                 print("Connected!")
             }
@@ -198,6 +199,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
                 self.currencyBalance.setTitle("USD: 0.00" , for: .normal)
             }
         }
+        //: TODO: If we are here, we have the latest Market Value. Lets store it in user Defaults
         self.marketPrice.setTitle(tick.formattedPrice, for: .normal)
     }
     

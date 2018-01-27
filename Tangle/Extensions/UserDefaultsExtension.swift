@@ -28,12 +28,10 @@ extension UserDefaults {
     func availableBTC() -> Float {
         return float(forKey: UserDefaultKeys.hasBTC.rawValue)
     }
-    
     func setETHAmount(value: Float)  {
         set(value, forKey: UserDefaultKeys.hasETH.rawValue)
         synchronize()
     }
-    
     func availableETH() -> Float {
         return float(forKey: UserDefaultKeys.hasETH.rawValue)
     }
