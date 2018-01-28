@@ -15,6 +15,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate, ChartViewDel
     
     var dataSource: [TickerResponse] = []
     let currencies = ["LTC-USD", "LTC-EUR"]
+    let items = ["1H", "1D", "1W", "1M", "1Y", "All"]
     var months: [Double]!
         
     lazy var scrollView: UIScrollView = {
@@ -72,6 +73,15 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate, ChartViewDel
         button.titleLabel?.font = UIFont(name: "Avenir-Light", size: 15)
        // button.addTarget(self, action: #selector(reconnectToSocket), for: .touchUpInside)
         return button
+    }()
+    
+    lazy var customSC: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: self.items)
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.backgroundColor = .clear
+        segmentedControl.tintColor = .white
+        segmentedControl.addTarget(self, action: #selector(updateChart), for: .valueChanged)
+        return segmentedControl
     }()
     
     lazy var litecoinChart: LineChartView = {
@@ -145,6 +155,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate, ChartViewDel
         contentView.addSubview(marketPrice)
         contentView.addSubview(LTC_balanceButton)
         contentView.addSubview(currencyBalance)
+        contentView.addSubview(customSC)
         contentView.addSubview(litecoinChart)
         contentView.addSubview(addressButton)
         
@@ -177,6 +188,9 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate, ChartViewDel
         //: CurrencyBalance Constraints
          contentView.addConstraint(NSLayoutConstraint(item: currencyBalance, attribute: .centerX, relatedBy: .equal, toItem: self.contentView, attribute: .centerX, multiplier: 1, constant: 0))
         
+        //: Segmeneted Constraints
+        contentView.addConstraint(NSLayoutConstraint(item: customSC, attribute: .centerX, relatedBy: .equal, toItem: self.contentView, attribute: .centerX, multiplier: 1, constant: 0))
+        
         //: Chart Constraints
         contentView.addConstraintsWithFormat(format: "H:|[v0]|", views: litecoinChart)
         contentView.addConstraint(NSLayoutConstraint(item: litecoinChart, attribute: .bottom, relatedBy: .equal, toItem: addressButton, attribute: .top, multiplier: 1, constant: -10))
@@ -187,7 +201,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate, ChartViewDel
         contentView.addConstraintsWithFormat(format: "V:[v0(25)]|", views: addressButton)
 
         //: Vertical Constraints
-        contentView.addConstraintsWithFormat(format: "V:|-45-[v0]-5-[v1][v2][v3]-5-[v4]", views: imageView, marketPrice, LTC_balanceButton, currencyBalance, litecoinChart)
+        contentView.addConstraintsWithFormat(format: "V:|-45-[v0]-5-[v1][v2][v3]-2-[v4]-5-[v5]", views: imageView, marketPrice, LTC_balanceButton, currencyBalance, customSC, litecoinChart)
     }
     
     func connectToSocket() {
@@ -350,6 +364,28 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate, ChartViewDel
         
         litecoinChart.rightAxis.enabled = false
         litecoinChart.marker = marker
+    }
+    
+    //: SegementedControl function
+    @objc func updateChart(sender: UISegmentedControl) {
+        //: This funciton will call gdax price history
+        switch sender.selectedSegmentIndex {
+        case 0:
+            print("1H")
+        case 1:
+            print("1D")
+        case 2:
+            print("1W")
+        case 3:
+            print("1M")
+        case 4:
+            print("1Y")
+        case 5:
+            print("All")
+        default:
+            print("Im not sure how")
+        
+        }
     }
     
 }
