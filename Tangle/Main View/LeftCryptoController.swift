@@ -325,11 +325,15 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate, ChartViewDel
         /*
          https://stackoverflow.com/questions/36713996/how-to-hide-labels-in-ios-charts
          */
-        //chart.leftAxis.drawLabelsEnabled = false
+        //litecoinChart.leftAxis.drawLabelsEnabled = false
         
         
         //: Removes the x Axis values from the top and the grid lines as well
-        litecoinChart.xAxis.enabled = false
+        /*
+         Add this line if you want to remove the xAxis from the chart
+         litecoinChart.xAxis.enabled = false
+        */
+        litecoinChart.xAxis.labelPosition = XAxis.LabelPosition.bottom
         litecoinChart.xAxis.drawGridLinesEnabled = false
 
         litecoinChart.leftAxis.drawGridLinesEnabled = false
@@ -338,7 +342,11 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate, ChartViewDel
         litecoinChart.drawGridBackgroundEnabled = false
         //: .leftAxis is giving me an error
         //litecoinChart.leftAxis.enabled = false
+        
+        //: Changes the axis color
         litecoinChart.leftAxis.labelTextColor = .white
+        litecoinChart.xAxis.labelTextColor = .white
+        
         
         litecoinChart.rightAxis.enabled = false
         litecoinChart.marker = marker
