@@ -80,33 +80,13 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate, ChartViewDel
        // chart.backgroundColor = .red
         //chart.noDataText = ""
         //chart.noDataTextColor = .clear
-        
         chart.delegate = self
         chart.pinchZoomEnabled = false
         //: (zooming in and out by gesture) for the chart
         chart.setScaleEnabled(false)
-        
         chart.chartDescription?.text = ""
-        
-        /*
-         https://stackoverflow.com/questions/36713996/how-to-hide-labels-in-ios-charts
-        */
-        //chart.leftAxis.drawLabelsEnabled = false
         chart.legend.enabled = false
-        
-        //: Removes the x Axis values from the top and the grid lines as well
-        chart.xAxis.enabled = false
-        chart.xAxis.drawGridLinesEnabled = false
-
-        chart.leftAxis.drawGridLinesEnabled = false
-        chart.rightAxis.drawGridLinesEnabled = false
-        chart.drawBordersEnabled = false
-        chart.drawGridBackgroundEnabled = false
-        
-        /*
-        chart.leftAxis.enabled = false
-        chart.rightAxis.enabled = false
-*/
+       
         return chart
     }()
     
@@ -327,12 +307,11 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate, ChartViewDel
         //: Displays the Y-Values when tapped
         let marker: BalloonMarker = BalloonMarker(color: UIColor.white, font: UIFont.systemFont(ofSize: 12.0), textColor: .darkGray, insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
         marker.minimumSize = CGSize(width: 40.0, height: 40.0)
-        litecoinChart.marker = marker
 
         
         //: The x and y lines across the chart
         lineDataSet.highlightColor = .white
-        //line.drawCirclesEnabled = false
+        lineDataSet.drawCirclesEnabled = false
         
         //: This is the object that will be added to the chart
         let data = LineChartData()
@@ -341,6 +320,28 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate, ChartViewDel
         
         //: This adds the chart data to the chart and causes an update
         litecoinChart.data = data
+        
+        
+        /*
+         https://stackoverflow.com/questions/36713996/how-to-hide-labels-in-ios-charts
+         */
+        //chart.leftAxis.drawLabelsEnabled = false
+        
+        
+        //: Removes the x Axis values from the top and the grid lines as well
+        litecoinChart.xAxis.enabled = false
+        litecoinChart.xAxis.drawGridLinesEnabled = false
+
+        litecoinChart.leftAxis.drawGridLinesEnabled = false
+        litecoinChart.rightAxis.drawGridLinesEnabled = false
+        litecoinChart.drawBordersEnabled = false
+        litecoinChart.drawGridBackgroundEnabled = false
+        //: .leftAxis is giving me an error
+        //litecoinChart.leftAxis.enabled = false
+        litecoinChart.leftAxis.labelTextColor = .white
+        
+        litecoinChart.rightAxis.enabled = false
+        litecoinChart.marker = marker
     }
     
 }
