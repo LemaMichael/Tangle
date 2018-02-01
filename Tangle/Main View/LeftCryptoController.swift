@@ -125,6 +125,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate, ChartViewDel
         }
     }
     
+    //: MARK: - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.68, green: 0.68, blue: 0.69, alpha: 0.5)

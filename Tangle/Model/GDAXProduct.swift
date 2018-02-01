@@ -74,7 +74,6 @@ class GDAXProduct {
         let timeLapse = granularity * 60
         
     }
-    
    
     
     
