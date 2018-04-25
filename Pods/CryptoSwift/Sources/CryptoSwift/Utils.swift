@@ -1,5 +1,4 @@
 //
-//  Utils.swift
 //  CryptoSwift
 //
 //  Copyright (C) 2014-2017 Marcin Krzyżanowski <marcin@krzyzanowskim.com>
@@ -14,34 +13,42 @@
 //  - This notice may not be removed or altered from any source or binary distribution.
 //
 
+@_transparent
 func rotateLeft(_ value: UInt8, by: UInt8) -> UInt8 {
     return ((value << by) & 0xff) | (value >> (8 - by))
 }
 
+@_transparent
 func rotateLeft(_ value: UInt16, by: UInt16) -> UInt16 {
     return ((value << by) & 0xffff) | (value >> (16 - by))
 }
 
+@_transparent
 func rotateLeft(_ value: UInt32, by: UInt32) -> UInt32 {
     return ((value << by) & 0xffffffff) | (value >> (32 - by))
 }
 
+@_transparent
 func rotateLeft(_ value: UInt64, by: UInt64) -> UInt64 {
     return (value << by) | (value >> (64 - by))
 }
 
+@_transparent
 func rotateRight(_ value: UInt16, by: UInt16) -> UInt16 {
     return (value >> by) | (value << (16 - by))
 }
 
+@_transparent
 func rotateRight(_ value: UInt32, by: UInt32) -> UInt32 {
     return (value >> by) | (value << (32 - by))
 }
 
+@_transparent
 func rotateRight(_ value: UInt64, by: UInt64) -> UInt64 {
     return ((value >> by) | (value << (64 - by)))
 }
 
+@_transparent
 func reversed(_ uint8: UInt8) -> UInt8 {
     var v = uint8
     v = (v & 0xf0) >> 4 | (v & 0x0f) << 4
@@ -50,6 +57,7 @@ func reversed(_ uint8: UInt8) -> UInt8 {
     return v
 }
 
+@_transparent
 func reversed(_ uint32: UInt32) -> UInt32 {
     var v = uint32
     v = ((v >> 1) & 0x55555555) | ((v & 0x55555555) << 1)
@@ -60,18 +68,18 @@ func reversed(_ uint32: UInt32) -> UInt32 {
     return v
 }
 
-func xor<T, V>(_ left: T, _ right: V) -> ArraySlice<UInt8> where T: RandomAccessCollection, V: RandomAccessCollection, T.Element == UInt8, T.Index == Int, T.IndexDistance == Int, V.Element == UInt8, V.IndexDistance == Int, V.Index == Int {
+func xor<T, V>(_ left: T, _ right: V) -> ArraySlice<UInt8> where T: RandomAccessCollection, V: RandomAccessCollection, T.Element == UInt8, T.Index == Int, V.Element == UInt8, V.Index == Int {
     return xor(left, right).slice
 }
 
-func xor<T, V>(_ left: T, _ right: V) -> Array<UInt8> where T: RandomAccessCollection, V: RandomAccessCollection, T.Element == UInt8, T.Index == Int, T.IndexDistance == Int, V.Element == UInt8, V.IndexDistance == Int, V.Index == Int {
+func xor<T, V>(_ left: T, _ right: V) -> Array<UInt8> where T: RandomAccessCollection, V: RandomAccessCollection, T.Element == UInt8, T.Index == Int, V.Element == UInt8, V.Index == Int {
     let length = Swift.min(left.count, right.count)
 
     let buf = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
-    buf.initialize(to: 0, count: length)
+    buf.initialize(repeating: 0, count: length)
     defer {
-        buf.deinitialize()
-        buf.deallocate(capacity: length)
+        buf.deinitialize(count: length)
+        buf.deallocate()
     }
 
     // xor

@@ -32,10 +32,12 @@ class GDAXProduct {
                 for array in jsonArray {
                     let unixTimeStamp = array[0] as! Double
                     let date = Date(timeIntervalSince1970: unixTimeStamp)
-                    //print(date)
+                    print(date)
+                   //let date = self.dateConverter(start: unixTimeStamp)
+                    
 
 
-                    print(date, array[1])
+                    //print(date, array[1])
                 }
 
             } catch let error as NSError {
@@ -73,6 +75,20 @@ class GDAXProduct {
         //: GDAX has a limit of returning maximum of 200, per request.
         let timeLapse = granularity * 60
         
+    }
+    
+    
+    func dateConverter(start: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let date = dateFormatter.date(from: start)
+        
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date!)
+        let finalDate = calendar.date(from:components)
+        
+        
+       return finalDate!
     }
    
     
