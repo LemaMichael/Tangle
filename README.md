@@ -8,5 +8,7 @@ Cryptocurrency Price Tracker!
 # Contributing
 Please feel free to contribute in implementing a feature.
 
-:bar_chart: I will implement the charts feature in a separate project.
+# Todo
+- [ ] Implement Charts
+- [ ] Your suggestions!
 
