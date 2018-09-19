@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Charts
 import GDAX_Swift
 
 class RightCryptoController: UIViewController, UIScrollViewDelegate {
@@ -72,15 +71,6 @@ class RightCryptoController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
-    lazy var ethereumChart: LineChartView = {
-        let chart = LineChartView()
-        //: TODO: - CHANGE THIS
-        chart.backgroundColor = .clear
-        chart.noDataText = ""
-        chart.noDataTextColor = .clear
-        return chart
-    }()
-    
     lazy var addressButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Address: 0x83D1085A4fAb21DeED36f34aed5c315e08b3a9CE", for: .normal)
@@ -126,7 +116,6 @@ class RightCryptoController: UIViewController, UIScrollViewDelegate {
         contentView.addSubview(marketPrice)
         contentView.addSubview(ETH_balanceButton)
         contentView.addSubview(currencyBalance)
-        contentView.addSubview(ethereumChart)
         contentView.addSubview(addressButton)
         
         
@@ -158,9 +147,6 @@ class RightCryptoController: UIViewController, UIScrollViewDelegate {
         //: CurrencyBalance Constraints
         contentView.addConstraint(NSLayoutConstraint(item: currencyBalance, attribute: .centerX, relatedBy: .equal, toItem: self.contentView, attribute: .centerX, multiplier: 1, constant: 0))
         
-        //: Chart Constraints
-        contentView.addConstraintsWithFormat(format: "H:|-[v0]-|", views: ethereumChart)
-        contentView.addConstraint(NSLayoutConstraint(item: ethereumChart, attribute: .bottom, relatedBy: .equal, toItem: addressButton, attribute: .top, multiplier: 1, constant: -10))
         
         
         //: Address Textfield Constraints
@@ -168,7 +154,7 @@ class RightCryptoController: UIViewController, UIScrollViewDelegate {
         contentView.addConstraintsWithFormat(format: "V:[v0(25)]|", views: addressButton)
         
         //: Vertical Constraints
-        contentView.addConstraintsWithFormat(format: "V:|-45-[v0]-5-[v1][v2][v3]-5-[v4]", views: imageView, marketPrice, ETH_balanceButton, currencyBalance, ethereumChart)
+        contentView.addConstraintsWithFormat(format: "V:|-45-[v0]-5-[v1][v2][v3]", views: imageView, marketPrice, ETH_balanceButton, currencyBalance)
     }
     
     func connectToSocket() {

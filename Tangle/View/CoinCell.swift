@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Charts
 
 class CoinCell: UICollectionViewCell {
     override init(frame: CGRect) {
@@ -64,12 +63,6 @@ class CoinCell: UICollectionViewCell {
         return view
     }()
     
-    let chart: LineChartView = {
-        let chart = LineChartView()
-        //chart.backgroundColor = .red
-        return chart
-    }()
-    
     func setUpCell() {
         //: Light Yellow Color for each cell
         backgroundColor = UIColor(red: 245/255, green: 192/255, blue: 24/255, alpha: 0.95)
@@ -80,12 +73,12 @@ class CoinCell: UICollectionViewCell {
         addSubview(dayChangePrice)
         addSubview(priceChartLabel)
         addSubview(borderView)
-        addSubview(chart)
+        
         
         //: CoinLabel Constraints
         addConstraintsWithFormat(format: "H:|-4-[v0]", views: coinLabel)
         addConstraintsWithFormat(format: "H:|-4-[v0]", views: tickerLabel)
-        addConstraintsWithFormat(format: "V:|-4-[v0(19)]-2-[v1(14)]-3-[v2(10)]-[v3]|", views: coinLabel, tickerLabel, priceChartLabel, chart)
+        addConstraintsWithFormat(format: "V:|-4-[v0(19)]-2-[v1(14)]-3-[v2(10)]|", views: coinLabel, tickerLabel, priceChartLabel)
         
         addConstraintsWithFormat(format: "H:[v0]-4-|", views: coinPrice)
         addConstraintsWithFormat(format: "H:[v0]-4-|", views: dayChangePrice)
@@ -95,8 +88,7 @@ class CoinCell: UICollectionViewCell {
         addConstraint(NSLayoutConstraint(item: borderView, attribute: .centerY, relatedBy: .equal, toItem: priceChartLabel, attribute: .centerY, multiplier: 1, constant: 0))
         addConstraintsWithFormat(format: "V:[v0(0.5)]", views: borderView)
         
-        //: Chart Constraints
-        addConstraintsWithFormat(format: "H:|[v0]|", views: chart)
+        
 
     }
     

@@ -20,7 +20,6 @@
 		4C91615F2007272900E63A2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C91615D2007272900E63A2D /* LaunchScreen.storyboard */; };
 		4CA83B2D2009534D008733D8 /* CurrencyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA83B2C2009534D008733D8 /* CurrencyType.swift */; };
 		4CA83B2F200957B0008733D8 /* FormattedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA83B2E200957B0008733D8 /* FormattedCurrency.swift */; };
-		4CBE6CBF2152D178005AE314 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBE6CBE2152D178005AE314 /* BalloonMarker.swift */; };
 		4CCF4AC620158188002ED82C /* GDAXProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCF4AC520158188002ED82C /* GDAXProduct.swift */; };
 		4CDCE9AD20141C02005BF892 /* SnapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCE9AC20141C02005BF892 /* SnapContainerViewController.swift */; };
 		4CDCE9AF20141C84005BF892 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCE9AE20141C84005BF892 /* VerticalScrollViewController.swift */; };
@@ -45,7 +44,6 @@
 		4C9161602007272900E63A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CA83B2C2009534D008733D8 /* CurrencyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyType.swift; sourceTree = "<group>"; };
 		4CA83B2E200957B0008733D8 /* FormattedCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedCurrency.swift; sourceTree = "<group>"; };
-		4CBE6CBE2152D178005AE314 /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		4CCF4AC520158188002ED82C /* GDAXProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDAXProduct.swift; sourceTree = "<group>"; };
 		4CDCE9AC20141C02005BF892 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
 		4CDCE9AE20141C84005BF892 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				4C790D4F2007E0660022E3B8 /* CoinCell.swift */,
-				4CBE6CBE2152D178005AE314 /* BalloonMarker.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -272,14 +269,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Tangle/Pods-Tangle-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/GDAX_Swift/GDAX_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GDAX_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
@@ -303,7 +298,6 @@
 				4C3804C42007C5A8009B5025 /* CustomTabBarController.swift in Sources */,
 				4CDCE9AD20141C02005BF892 /* SnapContainerViewController.swift in Sources */,
 				4CDCE9B120141D5E005BF892 /* LeftCryptoController.swift in Sources */,
-				4CBE6CBF2152D178005AE314 /* BalloonMarker.swift in Sources */,
 				4CDCE9B320141D72005BF892 /* MiddleCryptoController.swift in Sources */,
 				4C3AD81F20146DF900BCBD33 /* StringExtension.swift in Sources */,
 				4C790D4E2007CB6F0022E3B8 /* ConstraintsExtension.swift in Sources */,

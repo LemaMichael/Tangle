@@ -7,7 +7,6 @@ target 'Tangle' do
 
   # Pods for Tangle
 
-  pod 'Charts'
   pod 'GDAX_Swift'
 
 
