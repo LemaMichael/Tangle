@@ -30,7 +30,7 @@ class PortfolioController: UIViewController, UICollectionViewDelegate, UICollect
         cv.dataSource = self
         cv.showsVerticalScrollIndicator = false
         cv.alwaysBounceVertical = true
-        cv.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
+        cv.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
         return cv
     }()
     

@@ -42,7 +42,7 @@ class MiddleCryptoController: UIViewController, UIScrollViewDelegate {
     //: TODO: Change font
     let marketPrice: UIButton = {
         let button = UIButton()
-        button.setTitle("$10,862.52", for: UIControlState.normal)
+        button.setTitle("$10,862.52", for: UIControl.State.normal)
         button.setTitleColor(.white, for: .normal)
         button.contentHorizontalAlignment = .center
         button.sizeToFit()
@@ -51,8 +51,8 @@ class MiddleCryptoController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     let BTC_balanceButton: UIButton = {
-        let button = UIButton(type: UIButtonType.system)
-        button.setTitle("BTC: 0", for: UIControlState.normal)
+        let button = UIButton(type: UIButton.ButtonType.system)
+        button.setTitle("BTC: 0", for: UIControl.State.normal)
         button.setTitleColor(.white, for: .normal)
         button.contentHorizontalAlignment = .center
         button.sizeToFit()
@@ -62,8 +62,8 @@ class MiddleCryptoController: UIViewController, UIScrollViewDelegate {
     }()
     
     let currencyBalance: UIButton = {
-        let button = UIButton(type: UIButtonType.custom)
-        button.setTitle("USD: 0.00", for: UIControlState.normal)
+        let button = UIButton(type: UIButton.ButtonType.custom)
+        button.setTitle("USD: 0.00", for: UIControl.State.normal)
         button.setTitleColor(.white, for: .normal)
         button.contentHorizontalAlignment = .center
         button.sizeToFit()
@@ -189,7 +189,7 @@ class MiddleCryptoController: UIViewController, UIScrollViewDelegate {
         print("Hold amount tapped")
         let alertController = UIAlertController(title: "BTC Amount", message: "Enter size", preferredStyle: .alert)
         alertController.addTextField { (textField) in
-            textField.placeholder = "0.0748"
+            textField.placeholder = "1.01"
             textField.keyboardType = UIKeyboardType.decimalPad
         }
         let doneAction = UIAlertAction(title: "Done", style: .default) { (action) in

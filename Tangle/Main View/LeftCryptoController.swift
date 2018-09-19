@@ -44,7 +44,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
     //: TODO: Change font
     let marketPrice: UIButton = {
         let button = UIButton()
-        button.setTitle("$207.43", for: UIControlState.normal)
+        button.setTitle("$207.43", for: UIControl.State.normal)
         button.setTitleColor(.white, for: .normal)
         button.contentHorizontalAlignment = .center
         button.sizeToFit()
@@ -54,8 +54,8 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     let LTC_balanceButton: UIButton = {
-        let button = UIButton(type: UIButtonType.system)
-        button.setTitle("LTC: 0", for: UIControlState.normal)
+        let button = UIButton(type: UIButton.ButtonType.system)
+        button.setTitle("LTC: 0", for: UIControl.State.normal)
         button.setTitleColor(.white, for: .normal)
         button.contentHorizontalAlignment = .center
         button.sizeToFit()
@@ -65,8 +65,8 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
     }()
     
     let currencyBalance: UIButton = {
-        let button = UIButton(type: UIButtonType.custom)
-        button.setTitle("USD: 0.00", for: UIControlState.normal)
+        let button = UIButton(type: UIButton.ButtonType.custom)
+        button.setTitle("USD: 0.00", for: UIControl.State.normal)
         button.setTitleColor(.white, for: .normal)
         button.contentHorizontalAlignment = .center
         button.sizeToFit()
@@ -116,16 +116,12 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         view.backgroundColor = UIColor(red: 0.68, green: 0.68, blue: 0.69, alpha: 0.5)
         setupViews()
         connectToSocket()
-        GDAXProduct.init(product: "LTC-USD")
+        //GDAXProduct.init(product: "LTC-USD")
         
         if LTCAmount() != 0 {
             //self.refresh(tick: self.dataSource.first!)
             self.LTC_balanceButton.setTitle("LTC: \(LTCAmount())", for: .normal)
         }
-        
-        //: Setting up chart data
-        months = [1,2,3,4,5,6,7,8,9,10,11,12]
-        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
         
     }
     
@@ -214,7 +210,7 @@ class LeftCryptoController: UIViewController, UIScrollViewDelegate {
         print("Hold amount tapped")
         let alertController = UIAlertController(title: "LTC Amount", message: "Enter size", preferredStyle: .alert)
         alertController.addTextField { (textField) in
-            textField.placeholder = "72.42100000"
+            textField.placeholder = "1.01"
             textField.keyboardType = UIKeyboardType.decimalPad
         }
         let doneAction = UIAlertAction(title: "Done", style: .default) { (action) in

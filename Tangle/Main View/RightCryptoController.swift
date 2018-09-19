@@ -41,7 +41,7 @@ class RightCryptoController: UIViewController, UIScrollViewDelegate {
     //: TODO: Change font
     let marketPrice: UIButton = {
         let button = UIButton()
-        button.setTitle("$981.82", for: UIControlState.normal)
+        button.setTitle("$981.82", for: UIControl.State.normal)
         button.setTitleColor(.white, for: .normal)
         button.contentHorizontalAlignment = .center
         button.sizeToFit()
@@ -50,8 +50,8 @@ class RightCryptoController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     let ETH_balanceButton: UIButton = {
-        let button = UIButton(type: UIButtonType.system)
-        button.setTitle("ETH: 0", for: UIControlState.normal)
+        let button = UIButton(type: UIButton.ButtonType.system)
+        button.setTitle("ETH: 0", for: UIControl.State.normal)
         button.setTitleColor(.white, for: .normal)
         button.contentHorizontalAlignment = .center
         button.sizeToFit()
@@ -61,8 +61,8 @@ class RightCryptoController: UIViewController, UIScrollViewDelegate {
     }()
     
     let currencyBalance: UIButton = {
-        let button = UIButton(type: UIButtonType.custom)
-        button.setTitle("USD: 0.00", for: UIControlState.normal)
+        let button = UIButton(type: UIButton.ButtonType.custom)
+        button.setTitle("USD: 0.00", for: UIControl.State.normal)
         button.setTitleColor(.white, for: .normal)
         button.contentHorizontalAlignment = .center
         button.sizeToFit()
@@ -189,7 +189,7 @@ class RightCryptoController: UIViewController, UIScrollViewDelegate {
         print("Hold amount tapped")
         let alertController = UIAlertController(title: "ETH Amount", message: "Enter size", preferredStyle: .alert)
         alertController.addTextField { (textField) in
-            textField.placeholder = "0.8461"
+            textField.placeholder = "1.01"
             textField.keyboardType = UIKeyboardType.decimalPad
         }
         let doneAction = UIAlertAction(title: "Done", style: .default) { (action) in
